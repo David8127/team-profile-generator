@@ -119,14 +119,15 @@ function renderHTMLFile() {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="/assets/style.css">
             <title>Team Profile</title>
         </head>
         <body>
-            <div class="jumbotron text-center">
+            <div class="jumbotron text-white text-center bg-info">
                 <h1>My Team Profile</h1>
             </div>
             <div class= "container">
-                <div class= "row col-12">
+                <div class= "row col-12 d-flex flex-wrap justify-content-around">
                 ${employees.map(employee => /*html*/ {
         switch (employee.getRole()) {
             case "Manager":
@@ -135,8 +136,8 @@ function renderHTMLFile() {
                 return engineerCard(employee);
             case "Intern":
                 return internCard(employee);
-            }
         }
+    }
     )}
                 </div>
             </div>
@@ -148,23 +149,18 @@ function renderHTMLFile() {
 }
 
 
-
-//for github link down below:
-//<a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}<a>
-
-
 //Cards that return HTML content depending on what type of employee they are
 function managerCard(manager) {
     return `
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white bg-secondary">
           <h3 class="card-title">${manager.name} 💼</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
             <li class="list-group-item">employee ID: ${manager.id}</li>
+            <li class="list-group-item">email: <a href="mailto:${manager.email}">${manager.email}<a></li>
             <li class="list-group-item">office number: ${manager.officeNumber}</li>
-            <li class="list-group-item">email: ${manager.email}</li>
             </ul>
         </div>
       </div>
@@ -174,13 +170,13 @@ function managerCard(manager) {
 function engineerCard(engineer) {
     return `
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white bg-success">
           <h3 class="card-title">${engineer.name} ⚙ </h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
             <li class="list-group-item">employee ID: ${engineer.id}</li>
-            <li class="list-group-item">email: ${engineer.email}</li>
+            <li class="list-group-item">email: <a href="mailto:${engineer.email}">${engineer.email}<a></li>
             <li class="list-group-item">Github: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}<a></li>
             </ul>
         </div>
@@ -191,13 +187,13 @@ function engineerCard(engineer) {
 function internCard(intern) {
     return `
       <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white bg-primary">
           <h3 class="card-title">${intern.name} 🎓</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
             <li class="list-group-item">employee ID: ${intern.id}</li>
-            <li class="list-group-item">email: ${intern.email}</li>
+            <li class="list-group-item">email: <a href="mailto:${intern.email}">${intern.email}<a></li>
             <li class="list-group-item">School: ${intern.school}</li>
             </ul>
         </div>
